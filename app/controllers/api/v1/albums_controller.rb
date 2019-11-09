@@ -5,14 +5,13 @@ class Api::V1::AlbumsController < ApplicationController
   # GET /albums
   def index
     @albums = Album.all
-
+    
     render json: @albums
   end
 
   # GET /albums/1
   def show
-    @artist = Artist.find(@album.artist_id)
-    render json: {"Album" => @album, "Artist" => @artist} 
+    render json: {"Artist" => @album.artist.name , "Album" => @album } 
   end
 
   # POST /albums
