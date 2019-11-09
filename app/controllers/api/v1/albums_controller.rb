@@ -1,5 +1,6 @@
-class AlbumsController < ApplicationController
+class Api::V1::AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :update, :destroy]
+ 
 
   # GET /albums
   def index
@@ -10,7 +11,8 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1
   def show
-    render json: @album
+    @artist = Artist.find(@album.artist_id)
+    render json: {"Album" => @album, "Artist" => @artist} 
   end
 
   # POST /albums
@@ -18,7 +20,7 @@ class AlbumsController < ApplicationController
     @album = Album.new(album_params)
 
     if @album.save
-      render json: @album, status: :created, location: @album
+      render json: @album
     else
       render json: @album.errors, status: :unprocessable_entity
     end
@@ -48,4 +50,5 @@ class AlbumsController < ApplicationController
     def album_params
       params.require(:album).permit(:name, :length, :year, :image, :votes, :artist_id)
     end
+
 end

@@ -1,4 +1,4 @@
-class ArtistsController < ApplicationController
+class Api::V1::ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :update, :destroy]
 
   # GET /artists
@@ -18,7 +18,7 @@ class ArtistsController < ApplicationController
     @artist = Artist.new(artist_params)
 
     if @artist.save
-      render json: @artist, status: :created, location: @artist
+      render json: @artist
     else
       render json: @artist.errors, status: :unprocessable_entity
     end

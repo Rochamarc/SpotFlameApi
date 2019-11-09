@@ -1,4 +1,4 @@
-class SongsController < ApplicationController
+class Api::V1::SongsController < ApplicationController
   before_action :set_song, only: [:show, :update, :destroy]
 
   # GET /songs
@@ -18,7 +18,7 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
 
     if @song.save
-      render json: @song, status: :created, location: @song
+      render json: @song
     else
       render json: @song.errors, status: :unprocessable_entity
     end
