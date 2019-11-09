@@ -1,0 +1,4 @@
+Request -> Header "Authorization token" localhost:3000/authenticate 
+Response -> { "token": "token" }
+
+User.create!(email: "email", password: "password", password_confirmation: "password")
